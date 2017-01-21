@@ -14,7 +14,7 @@ build:
           sed -i 's/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
           sed -i 's|#\[multilib\]|\[multilib\]\nInclude = /etc/pacman.d/mirrorlist|' /etc/pacman.conf
           pacman -Syyu --noconfirm
-          pacman -S base-devel --needed --noconfirm git mesa-libgl nano
+          pacman -S gcc-libs-multilib git mesa-libgl nano --needed --noconfirm 
 
     - script:
         name: makepkg
