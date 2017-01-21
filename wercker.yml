@@ -8,6 +8,7 @@ build:
         code: |
           free
           pacman -Syyu --noconfirm
+          pacman -S multilib
           pacman -S base-devel --needed --noconfirm gcc-libs-multilib git mesa-libgl nano
           useradd -m -G wheel -s /bin/bash builder
           chown -R builder ${WERCKER_PIPELINE_DIR}
