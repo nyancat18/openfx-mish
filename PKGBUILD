@@ -12,11 +12,9 @@ makedepends=("git")
 depends=("libgl")
 depends_x86_64=("gcc-libs-multilib")
 source=("$pkgname::git+https://github.com/devernay/openfx-misc.git#tag=Natron-$pkgver"
-        "git+https://github.com/devernay/openfx.git"
-        "git+https://github.com/devernay/openfx-supportext.git")
+        )
 sha512sums=('SKIP'
-            'SKIP'
-            'SKIP')
+            )
 
 _bits=32 ; [[ "$CARCH" = 'x86_64' ]] && _bits=64
 
