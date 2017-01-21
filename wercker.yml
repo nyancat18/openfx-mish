@@ -15,8 +15,7 @@ build:
           sed -i 's|#\[multilib\]|\[multilib\]\nInclude = /etc/pacman.d/mirrorlist|' /etc/pacman.conf
           pacman -Syyu --noconfirm
           pacman -S base-devel --needed --noconfirm git mesa-libgl nano
-          pacman -R gcc-libs
-          pacman -S gcc-libs-multilib
+
     - script:
         name: makepkg
         code: |
