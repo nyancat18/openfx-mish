@@ -8,12 +8,13 @@ build:
         code: |
           free
           pacman -Syyu --noconfirm
+          sed -i 's|#\[multilib\]|\[multilib\]\nInclude = /etc/pacman.d/mirrorlist|' /etc/pacman.conf
           pacman -S gcc-libs-multilib --needed --noconfirm --force
           pacman -S base-devel --needed --noconfirm
           useradd -m -G wheel -s /bin/bash builder
           chown -R builder ${WERCKER_PIPELINE_DIR}
           sed -i 's/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
-          sed -i 's|#\[multilib\]|\[multilib\]\nInclude = /etc/pacman.d/mirrorlist|' /etc/pacman.conf
+
           pacman -Syyu --noconfirm
     - script:
         name: makepkg
