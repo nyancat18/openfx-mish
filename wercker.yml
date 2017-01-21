@@ -7,14 +7,13 @@ build:
         name: setup archlinux
         code: |
           free
-          sed -i 's|#\[multilib\]|\[multilib\]\nInclude = /etc/pacman.d/mirrorlist|' /etc/pacman.conf
           pacman -Syyu --noconfirm
-          pacman -S sudo  --needed --noconfirm
+          pacman -S base-devel --needed --noconfirm
           useradd -m -G wheel -s /bin/bash builder
           chown -R builder ${WERCKER_PIPELINE_DIR}
           sed -i 's/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
-          pacman -S gcc-libs-multilib git mesa-libgl nano --needed --noconfirm 
-
+          sed -i 's|#\[multilib\]|\[multilib\]\nInclude = /etc/pacman.d/mirrorlist|' /etc/pacman.conf
+          pacman -Syyu --noconfirm
     - script:
         name: makepkg
         code: |
