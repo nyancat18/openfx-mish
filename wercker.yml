@@ -9,10 +9,9 @@ build:
           free
           pacman -Syyu --noconfirm
           sed -i 's|#\[multilib\]|\[multilib\]\nInclude = /etc/pacman.d/mirrorlist|' /etc/pacman.conf
-          pacman -Syyu --noconfirm
-          pacman -Rdd gcc-libs --noconfirm
-          pacman -S gcc-libs-multilib --needed --noconfirm --force 
-          pacman -S base-devel --needed --noconfirm
+          pacman -S wget --noconfirm
+          wget http://mirror.pseudoform.org/multilib/os/x86_64/gcc-libs-multilib-6.3.1-1-x86_64.pkg.tar.xz
+          pacman -U gcc-libs-multilib-6.3.1-1-x86_64.pkg.tar.xz --noconfirm --force
           useradd -m -G wheel -s /bin/bash builder
           chown -R builder ${WERCKER_PIPELINE_DIR}
           sed -i 's/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
