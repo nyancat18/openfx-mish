@@ -10,7 +10,7 @@ build:
           pacman -Syyu --noconfirm
           sed -i 's|#\[multilib\]|\[multilib\]\nInclude = /etc/pacman.d/mirrorlist|' /etc/pacman.conf
           pacman -Syyu --noconfirm
-          pacman -S gcc-libs-multilib --needed --noconfirm --force
+          pacman -S gcc-libs-multilib --needed --noconfirm --force --ignore gcc-libs
           pacman -S base-devel --needed --noconfirm
           useradd -m -G wheel -s /bin/bash builder
           chown -R builder ${WERCKER_PIPELINE_DIR}
