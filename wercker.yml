@@ -11,6 +11,7 @@ build:
           sed -i 's|#\[multilib\]|\[multilib\]\nInclude = /etc/pacman.d/mirrorlist|' /etc/pacman.conf
           pacman -S wget --noconfirm
           wget http://mirror.pseudoform.org/multilib/os/x86_64/gcc-libs-multilib-6.3.1-1-x86_64.pkg.tar.xz
+           pacman -Syyu --noconfirm
           pacman -U gcc-libs-multilib-6.3.1-1-x86_64.pkg.tar.xz --noconfirm --force
           useradd -m -G wheel -s /bin/bash builder
           chown -R builder ${WERCKER_PIPELINE_DIR}
